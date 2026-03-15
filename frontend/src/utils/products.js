@@ -233,5 +233,5 @@ export const getDiscount = (price, originalPrice) => {
   return Math.round(((originalPrice - price) / originalPrice) * 100)
 }
 
-/** API base URL from environment */
-export const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000'
+/** API base URL — empty string so fetch('/api/...') uses the same Next.js origin */
+export const API_URL = ''

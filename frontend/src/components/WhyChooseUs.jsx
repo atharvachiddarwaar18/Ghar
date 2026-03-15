@@ -1,3 +1,4 @@
+'use client'
 import React from 'react'
 import { Truck, ShieldCheck, RefreshCw, Headphones, Award, Leaf } from 'lucide-react'
 

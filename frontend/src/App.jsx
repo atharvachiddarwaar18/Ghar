@@ -1,5 +1,8 @@
+'use client'
+import Link from 'next/link';
+import { useRouter, usePathname, useSearchParams } from 'next/navigation';
 import React, { useState, useEffect } from 'react'
-import { Routes, Route, useLocation, useParams, useNavigate, Link } from 'react-router-dom'
+
 import Navbar from './components/Navbar'
 import Footer from './components/Footer'
 import CartDrawer from './components/CartDrawer'
@@ -30,7 +33,7 @@ import PageTransition from './components/PageTransition'
    ScrollToTop — fires on every route change
 ──────────────────────────────────────────────────── */
 const ScrollToTop = () => {
-  const { pathname } = useLocation()
+  const { pathname } = { pathname: usePathname() || "", search: useSearchParams()?.toString() || "" }
   useEffect(() => { window.scrollTo({ top: 0, behavior: 'instant' }) }, [pathname])
   return null
 }
@@ -51,7 +54,7 @@ const MainLayout = ({ children }) => (
    App — root with React Router v6 config
 ──────────────────────────────────────────────────── */
 const App = () => {
-  const location = useLocation()
+  const location = { pathname: usePathname() || "", search: useSearchParams()?.toString() || "" }
   const { pathname } = location
 
   const isBare = pathname.startsWith('/login')

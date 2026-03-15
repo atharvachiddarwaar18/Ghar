@@ -1,5 +1,7 @@
+'use client'
+import Link from 'next/link';
 import React from 'react'
-import { Link } from 'react-router-dom'
+
 import { Instagram, Facebook, Twitter, Youtube, MapPin, Phone, Mail } from 'lucide-react'
 
 const Footer = () => {
@@ -67,7 +69,7 @@ const Footer = () => {
               ].map(({ label, to }) => (
                 <li key={label}>
                   <Link
-                    to={to}
+                    href={to}
                     className="font-body text-sm text-white/50 hover:text-gold transition-colors"
                   >
                     {label}
@@ -93,7 +95,7 @@ const Footer = () => {
               ].map(({ label, to }) => (
                 <li key={label}>
                   <Link
-                    to={to}
+                    href={to}
                     className="font-body text-sm text-white/50 hover:text-gold transition-colors"
                   >
                     {label}
@@ -154,7 +156,7 @@ const Footer = () => {
             ].map(({ label, to }) => (
               <Link
                 key={label}
-                to={to}
+                href={to}
                 className="font-body text-xs text-white/30 hover:text-gold transition-colors"
               >
                 {label}

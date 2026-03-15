@@ -1,5 +1,7 @@
+'use client'
+import Link from 'next/link';
 import React, { useRef, useState } from 'react'
-import { Link } from 'react-router-dom'
+
 import { ChevronLeft, ChevronRight, Star } from 'lucide-react'
 import ProductCard from './ProductCard'
 import { formatPrice } from '../utils/products'
@@ -27,7 +29,7 @@ const ProductCarousel = ({ products = [], title, subtitle, ctaLink = '/shop' }) 
           <div className="w-14 h-0.5 bg-gold mt-4" />
         </div>
         <Link
-          to={ctaLink}
+          href={ctaLink}
           className="font-body text-xs tracking-widest uppercase text-brown border-b border-brown pb-0.5 hover:text-amber hover:border-amber transition-colors self-start sm:self-auto flex-shrink-0"
         >
           View All →

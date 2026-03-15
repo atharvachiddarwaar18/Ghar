@@ -1,6 +1,8 @@
+'use client'
+import Link from 'next/link';
 import React, { useState } from 'react'
 import { Heart, ShoppingCart, Star, Eye } from 'lucide-react'
-import { Link } from 'react-router-dom'
+
 import { useCart } from '../context/CartContext'
 import { useWishlist } from '../context/WishlistContext'
 import { formatPrice, getDiscount } from '../utils/products'
@@ -47,7 +49,7 @@ const ProductCard = ({ product, layout = 'grid' }) => {
     <div className="card-product group relative">
       {/* Image Container */}
       <div className="relative overflow-hidden aspect-[4/5] bg-softgray">
-        <Link to={`/product/${product.slug}`} className="absolute inset-0 z-10">
+        <Link href={`/product/${product.slug}`} className="absolute inset-0 z-10">
           <span className="sr-only">View product</span>
         </Link>
         {!imgError ? (
@@ -91,7 +93,7 @@ const ProductCard = ({ product, layout = 'grid' }) => {
           </button>
 
           <Link
-            to={`/product/${product.slug}`}
+            href={`/product/${product.slug}`}
             className="bg-white/90 text-brown hover:bg-brown hover:text-white p-2 transition-all duration-200 shadow-lg pointer-events-auto"
             aria-label={`View ${product.name}`}
           >
@@ -121,7 +123,7 @@ const ProductCard = ({ product, layout = 'grid' }) => {
         </p>
 
         {/* Name */}
-        <Link to={`/product/${product.slug}`}>
+        <Link href={`/product/${product.slug}`}>
           <h3 className="font-heading text-base font-medium text-dark mb-2 leading-snug hover:text-brown transition-colors line-clamp-2">
             {product.name}
           </h3>

@@ -1,3 +1,4 @@
+'use client'
 import React, { createContext, useContext, useEffect, useState } from 'react'
 import { supabase } from '../utils/supabase'
 
@@ -44,7 +45,7 @@ export const AuthProvider = ({ children }) => {
     const { error } = await supabase.auth.signInWithOAuth({
       provider: 'google',
       options: {
-        redirectTo: `${import.meta.env.VITE_APP_URL}/auth/callback`,
+        redirectTo: `${process.env.NEXT_PUBLIC_APP_URL}/auth/callback`,
       },
     })
     if (error) throw error

@@ -1,6 +1,8 @@
+'use client'
+import Link from 'next/link';
 import React from 'react'
 import { X, ShoppingCart, Plus, Minus, Trash2, ArrowRight } from 'lucide-react'
-import { Link } from 'react-router-dom'
+
 import { useCart } from '../context/CartContext'
 import { formatPrice } from '../utils/products'
 
@@ -65,7 +67,7 @@ const CartDrawer = () => {
                 onClick={closeDrawer}
                 className="btn-primary"
               >
-                <Link to="/shop">Shop Now</Link>
+                <Link href="/shop">Shop Now</Link>
               </button>
             </div>
           ) : (
@@ -164,7 +166,7 @@ const CartDrawer = () => {
 
             {/* CTA */}
             <Link
-              to="/checkout"
+              href="/checkout"
               onClick={closeDrawer}
               className="flex items-center justify-center gap-2 w-full bg-brown text-white py-4 font-body text-xs tracking-widest uppercase hover:bg-brown-dark transition-colors group"
             >
@@ -173,7 +175,7 @@ const CartDrawer = () => {
             </Link>
 
             <Link
-              to="/shop"
+              href="/shop"
               onClick={closeDrawer}
               className="block text-center font-body text-xs tracking-wider text-textbrown/60 hover:text-brown transition-colors mt-3"
             >

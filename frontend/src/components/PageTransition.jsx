@@ -1,9 +1,11 @@
+'use client'
+import { usePathname, useSearchParams } from 'next/navigation';
 import React from 'react'
 import { motion } from 'framer-motion'
-import { useLocation } from 'react-router-dom'
+
 
 const PageTransition = ({ children }) => {
-  const { pathname } = useLocation()
+  const { pathname } = { pathname: usePathname() || "", search: useSearchParams()?.toString() || "" }
   
   return (
     <motion.div

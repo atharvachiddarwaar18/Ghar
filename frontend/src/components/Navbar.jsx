@@ -1,20 +1,23 @@
+'use client'
+import Link from 'next/link';
+import { useRouter, usePathname, useSearchParams } from 'next/navigation';
 import React, { useState, useEffect } from 'react'
-import { Link, useLocation, useNavigate } from 'react-router-dom'
+
 import { ShoppingCart, User, Menu, X, Search, Heart, LogOut } from 'lucide-react'
 import { useCart } from '../context/CartContext'
 import { useWishlist } from '../context/WishlistContext'
 import { useAuth } from '../context/AuthContext'
 import toast from 'react-hot-toast'
 
-const Navbar = () => {
+const NavbarInner = () => {
   const [scrolled, setScrolled] = useState(false)
   const [menuOpen, setMenuOpen] = useState(false)
   const [profileOpen, setProfileOpen] = useState(false)
   const { totalItems, openDrawer } = useCart()
   const { totalItems: wishlistCount } = useWishlist()
   const { user, signOut } = useAuth()
-  const location = useLocation()
-  const navigate = useNavigate()
+  const location = { pathname: usePathname() || "", search: useSearchParams()?.toString() || "" }
+  const navigate = useRouter()
 
   const isHome = location.pathname === '/'
 
@@ -55,7 +58,7 @@ const Navbar = () => {
           <div className="flex items-center justify-between h-16 md:h-20">
 
             {/* Logo */}
-            <Link to="/" className="flex items-center gap-3 flex-shrink-0">
+            <Link href="/" className="flex items-center gap-3 flex-shrink-0">
               <img
                 src="/images/logo.png"
                 alt="Ghar Sajaoo"
@@ -77,7 +80,7 @@ const Navbar = () => {
               {navLinks.map(link => (
                 <Link
                   key={link.label}
-                  to={link.to}
+                  href={link.to}
                   className={`font-body text-xs tracking-widest uppercase transition-colors duration-200 
                     ${textColor} hover:text-amber relative
                     after:absolute after:bottom-0 after:left-0 after:w-0 after:h-px
@@ -92,7 +95,7 @@ const Navbar = () => {
             <div className="flex items-center gap-4">
               {/* Wishlist */}
               <Link
-                to="/wishlist"
+                href="/wishlist"
                 aria-label={`Wishlist (${wishlistCount} items)`}
                 className={`hidden sm:flex items-center relative ${textColor} hover:text-amber transition-colors`}
               >
@@ -147,7 +150,7 @@ const Navbar = () => {
                     </div>
                     <div className="py-1">
                       <Link
-                        to="/profile"
+                        href="/profile"
                         onClick={() => setProfileOpen(false)}
                         className="block px-4 py-2 text-sm font-body text-textbrown hover:bg-cream transition-colors"
                       >
@@ -184,7 +187,7 @@ const Navbar = () => {
               {navLinks.map(link => (
                 <Link
                   key={link.label}
-                  to={link.to}
+                  href={link.to}
                   onClick={() => setMenuOpen(false)}
                   className="block font-body text-sm tracking-widest uppercase text-textbrown hover:text-brown transition-colors"
                 >
@@ -193,7 +196,7 @@ const Navbar = () => {
               ))}
               {!user ? (
                 <Link
-                  to="/login"
+                  href="/login"
                   onClick={() => setMenuOpen(false)}
                   className="block btn-primary text-center mt-4"
                 >
@@ -219,5 +222,11 @@ const Navbar = () => {
     </>
   )
 }
+
+const Navbar = (props) => (
+  <React.Suspense fallback={<div className="h-20 bg-transparent" />}>
+    <NavbarInner {...props} />
+  </React.Suspense>
+)
 
 export default Navbar
