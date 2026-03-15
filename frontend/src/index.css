@@ -1,0 +1,181 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ─── Base Layer ──────────────────────────────────── */
+@layer base {
+  :root {
+    --color-cream: #FBF7F0;
+    --color-brown: #8B4513;
+    --color-gold: #D4A574;
+    --color-dark: #1C0A00;
+    --color-amber: #C17F24;
+    --color-text: #4A3728;
+    
+    /* Font Families Mapping */
+    --font-heading: 'Cormorant Garamond', serif;
+    --font-body: 'Outfit', sans-serif;
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-cream text-textbrown antialiased;
+    font-family: var(--font-body);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-heading);
+  }
+
+  ::selection {
+    background-color: #D4A574;
+    color: #1C0A00;
+  }
+
+  ::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: #FBF7F0;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: #D4A574;
+    border-radius: 3px;
+  }
+}
+
+/* ─── Components Layer ────────────────────────────── */
+@layer components {
+  .btn-primary {
+    @apply bg-brown text-white px-8 py-3 rounded-none font-body font-medium 
+           tracking-widest uppercase text-xs transition-all duration-300
+           hover:bg-brown-dark hover:shadow-card-hover active:scale-95;
+  }
+
+  .btn-secondary {
+    @apply bg-transparent border border-brown text-brown px-8 py-3 rounded-none 
+           font-body font-medium tracking-widest uppercase text-xs transition-all 
+           duration-300 hover:bg-brown hover:text-white active:scale-95;
+  }
+
+  .btn-gold {
+    @apply bg-gold text-dark px-8 py-3 rounded-none font-body font-medium 
+           tracking-widest uppercase text-xs transition-all duration-300
+           hover:bg-gold-dark hover:shadow-card-hover active:scale-95;
+  }
+
+  .section-title {
+    @apply font-heading text-3xl md:text-4xl text-dark font-semibold;
+  }
+
+  .section-subtitle {
+    @apply font-body text-sm tracking-widest uppercase text-amber mt-2;
+  }
+
+  .card-product {
+    @apply bg-white rounded-none shadow-card hover:shadow-card-hover 
+           transition-all duration-300 overflow-hidden cursor-pointer
+           hover:-translate-y-1;
+  }
+
+  .input-field {
+    @apply w-full border border-gold/40 bg-cream px-4 py-3 text-textbrown 
+           font-body text-sm focus:outline-none focus:border-brown 
+           transition-colors placeholder:text-textbrown/40;
+  }
+
+  .badge {
+    @apply inline-block bg-amber/10 text-amber text-xs font-medium px-3 py-1 tracking-wide;
+  }
+
+  .divider {
+    @apply w-16 h-0.5 bg-gold mx-auto my-4;
+  }
+
+  .nav-link {
+    @apply font-body text-sm tracking-widest uppercase text-textbrown
+           hover:text-brown transition-colors duration-200 relative
+           after:absolute after:bottom-0 after:left-0 after:w-0 after:h-px
+           after:bg-brown after:transition-all after:duration-300
+           hover:after:w-full;
+  }
+}
+
+/* ─── Utilities Layer ─────────────────────────────── */
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+
+  .gradient-cream {
+    background: linear-gradient(135deg, #FBF7F0 0%, #F3EBD8 100%);
+  }
+
+  .gradient-brown {
+    background: linear-gradient(135deg, #8B4513 0%, #6B3410 100%);
+  }
+
+  .text-gradient {
+    background: linear-gradient(135deg, #8B4513, #C17F24);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+}
+
+/* ─── Carousel ────────────────────────────────────── */
+.carousel-track {
+  display: flex;
+  width: max-content;
+  animation: scrollLeft 40s linear infinite;
+}
+
+.carousel-track:hover {
+  animation-play-state: paused;
+}
+
+@keyframes scrollLeft {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+/* ─── Toast Overrides ─────────────────────────────── */
+.react-hot-toast-bar {
+  font-family: 'Inter', sans-serif !important;
+  border-radius: 0 !important;
+}
+
+/* ─── Razorpay Modal z-index fix ──────────────────── */
+.razorpay-container {
+  z-index: 99999 !important;
+}
+
+/* ─── Star Rating ─────────────────────────────────── */
+.star-filled {
+  color: #C17F24;
+  fill: #C17F24;
+}
+
+.star-empty {
+  color: #D4A574;
+}
